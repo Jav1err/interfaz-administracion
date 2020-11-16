@@ -54,7 +54,7 @@ class Feedback(db.Model):
 	utilidad = db.Column(db.Integer)
 	dividendos = db.Column(db.Integer)
 
-	def __init__(self, nombre, apellidos, rut, relacion, correo, telefono, nombreempresa, rutempresa, tipooperacion, monto, moneda, plazo, fondo, direccion, rol, tienetasacion, valortasacion, hipoteca, saldoporpagar, antiguedad, auditados, administradores, ventasanuales, cantidadempleados, ventasclientes, activostotales, inventario, cuentasporcobrar, activoscorriente, patrimonio, resultadooperacional, utilidad, dividendos):
+	def __init__(self, nombre, apellidos, rut, relacion, correo, telefono, nombreempresa, rutempresa, tipooperacion, monto, moneda, plazo, fondo, direccion, rol, tienetasacion, valortasacion, hipoteca, saldoporpagar, antiguedad, auditados, administradores, ventasanuales, cantidadempleados, ventasclientes, activostotales, inventario, cuentasporcobrar, activoscorriente, deudacorriente, patrimonio, resultadooperacional, utilidad, dividendos):
 		self.nombre = nombre
 		self.apellidos = apellidos
 		self.rut = rut
@@ -136,7 +136,7 @@ def submit():
 		if nombre == '' or apellidos == '' or rut == '' or correo == '' or telefono == '':
 			return render_template('index.html', message='Ingrese los datos requeridos')
 		if db.session.query(Feedback).filter(Feedback.rut == rut).count() == 0:
-			data = Feedback(nombre, apellidos, rut, relacion, correo, telefono, nombreempresa, rutempresa, tipooperacion, monto, moneda, plazo, fondo, direccion, rol, tienetasacion, hipoteca)
+			data = Feedback(nombre, apellidos, rut, relacion, correo, telefono, nombreempresa, rutempresa, tipooperacion, monto, moneda, plazo, fondo, direccion, rol, tienetasacion, valortasacion, hipoteca, saldoporpagar, antiguedad, auditados, administradores, ventasanuales, cantidadempleados, ventasclientes, activostotales, inventario, cuentasporcobrar, activoscorriente, deudacorriente, patrimonio, resultadooperacional, utilidad, dividendos)
 			db.session.add(data)
 			db.session.commit()
 			return render_template('succes.html')
